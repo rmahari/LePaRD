@@ -10,7 +10,7 @@ Download the dataset using [this link](https://drive.google.com/drive/folders/1T
 
 # Reference
 
-Please cite the following paper:
+Please cite the following paper if you use LePaRD:
 
 Here is a BibTeX citation:
 
