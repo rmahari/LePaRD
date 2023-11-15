@@ -12,8 +12,6 @@ Download the dataset using [this link](https://drive.google.com/drive/folders/1T
 
 Please cite the following paper if you use LePaRD:
 
-Here is a BibTeX citation:
-
 ```bibtex
 @article{mahari2023LePaRD,
   title={LePaRD: A Large-Scale Dataset of Judges Citing Precedents},
