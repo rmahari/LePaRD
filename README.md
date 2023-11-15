@@ -15,19 +15,18 @@ Please cite the following paper:
 Here is a BibTeX citation:
 
 ```bibtex
-@article{YourCitationKey,
-  title={Title of the Article},
-  author={Author, A. and Contributor, B.},
-  journal={Journal Name},
-  volume={42},
-  number={3},
-  pages={123-456},
-  year={2023},
-  publisher={Publisher}
+@article{mahari2023LePaRD,
+  title={LePaRD: 17,000,000 Examples of Judges Citing Precedents},
+  author={Mahari, Robert and Stammbach, Dominik and Ash, Elliott and Pentland, Alex'Sandy'},
+  journal={arXiv preprint},
+  year={2023}
 }
+}```
 
 
 # Description
+
+LePaRD is a massive collection of U.S. federal judicial citations to precedent in context. LePaRD builds on millions of expert decisions by extracting quotations to precedents from judicial opinions along with the preceding context. Each row of the dataset corresponds to a quotation to prior case law. 
 
 Contact [Robert Mahari](www.robertmahari.com) in case of any questions.
 
