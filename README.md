@@ -2,7 +2,7 @@
 
 This repo contains the dataset introduced in the following paper:
 
-[LePaRD: A Large-Scale Dataset of Judges Citing Precedents](tbd)
+[LePaRD: A Large-Scale Dataset of Judges Citing Precedents](http://arxiv.org/abs/2311.09356)
 
 As of November 15, 2023 we are releasing a small version of the dataset and plan to release the full dataset, along with additional analyses, upon publication.
 
