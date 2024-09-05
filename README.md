@@ -4,25 +4,33 @@ This repo contains the code and models for the paper LePaRD paper [(Mahari et al
 
 ## Updated dataset and results
 
-Updated dataset statistics and results (the output of the repliation package in this repo) can be found in the arxiv version [(Mahari et al., 2024)](https://arxiv.org/abs/2311.09356). we found minor bugs in the dataset version published at ACL which are fixed now.
+Updated dataset statistics and results (the output of the repliation package in this repo) can be found in the arxiv version [(Mahari et al., 2024)](https://arxiv.org/abs/2311.09356). This updated paper and code includes improvements that have been implemented since LePaRD was published in ACL.
 
-As of November 15, 2023 we are releasing a small version of the dataset and plan to release the full dataset, along with additional analyses, upon publication.
-
-Download the dataset using [this link](https://drive.google.com/drive/folders/1TLdgeWBRQ2l1CpRYDmp8ppImrm87rHV3?usp=sharing)
+Download the dataset on [Hugging Face](TBD)
 
 # Reference
 
 Please cite the following paper if you use LePaRD:
 
 ```bibtex
-@article{mahari2023LePaRD,
-  title={LePaRD: A Large-Scale Dataset of Judges Citing Precedents},
-  author={Mahari, Robert and Stammbach, Dominik and Ash, Elliott and Pentland, Alex'Sandy'},
-  journal={arXiv preprint},
-  year={2023}
+@inproceedings{mahari-etal-2024-lepard,
+    title = "{L}e{P}a{RD}: A Large-Scale Dataset of Judicial Citations to Precedent",
+    author = "Mahari, Robert  and
+      Stammbach, Dominik  and
+      Ash, Elliott  and
+      Pentland, Alex",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.acl-long.532",
+    pages = "9863--9877",
 }
 ```
-
 
 # Description
 
