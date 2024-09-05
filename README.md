@@ -15,13 +15,8 @@ Please cite the following paper if you use LePaRD:
 ```bibtex
 @inproceedings{mahari-etal-2024-lepard,
     title = "{L}e{P}a{RD}: A Large-Scale Dataset of Judicial Citations to Precedent",
-    author = "Mahari, Robert  and
-      Stammbach, Dominik  and
-      Ash, Elliott  and
-      Pentland, Alex",
-    editor = "Ku, Lun-Wei  and
-      Martins, Andre  and
-      Srikumar, Vivek",
+    author = "Mahari, Robert  and Stammbach, Dominik  and Ash, Elliott  and Pentland, Alex",
+    editor = "Ku, Lun-Wei  and Martins, Andre  and Srikumar, Vivek",
     booktitle = "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
     month = aug,
     year = "2024",
