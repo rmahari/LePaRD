@@ -37,7 +37,7 @@ LePaRD is a massive collection of U.S. federal judicial citations to precedent i
 - court: The court from which the passage originated
 - date: The date when the opinion from which the passage originated was published
 
-Contact ([Robert Mahari](https://robertmahari.com/)) in case of any questions.
+Contact [Robert Mahari](https://robertmahari.com/) in case of any questions.
 
 
 ## Data
