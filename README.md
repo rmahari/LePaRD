@@ -31,7 +31,7 @@ Please cite the following paper if you use LePaRD:
 
 LePaRD is a massive collection of U.S. federal judicial citations to precedent in context. LePaRD builds on millions of expert decisions by extracting quotations to precedents from judicial opinions along with the preceding context. Each row of the dataset corresponds to a quotation to prior case law used in a certain context.
 
-- passage_id: A unique idenifier for each passage
+- passage_id: A unique identifier for each passage
 - destination_context: The preceding context before the quotation
 - passage_text: The text of the passage that was quoted
 - court: The court from which the passage originated
