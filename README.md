@@ -6,7 +6,7 @@ This repo contains the code and models for the paper LePaRD paper [(Mahari et al
 
 Updated dataset statistics and results (the output of the repliation package in this repo) can be found in the arxiv version [(Mahari et al., 2024)](https://arxiv.org/abs/2311.09356). This updated paper and code includes improvements that have been implemented since LePaRD was published in ACL.
 
-Download the dataset on [Hugging Face](TBD)
+Download the dataset on [Hugging Face](https://huggingface.co/datasets/rmahari/LePaRD).
 
 # Reference
 
