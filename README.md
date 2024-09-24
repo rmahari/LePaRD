@@ -33,7 +33,7 @@ LePaRD is a massive collection of U.S. federal judicial citations to precedent i
 
 - passage_id: A unique identifier for each passage
 - destination_context: The preceding context before the quotation
-- passage_text: The text of the passage that was quoted
+- quote: The text of the passage that was quoted
 - court: The court from which the passage originated
 - date: The date when the opinion from which the passage originated was published
 
