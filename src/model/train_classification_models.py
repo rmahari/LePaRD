@@ -30,17 +30,17 @@ if __name__ == "__main__":
                 help="Epsilon for Adam optimizer.")
     parser.add_argument('--do_save', action='store_true')
     parser.add_argument("--n_labels", default="10000", type=str, help="")
+    parser.add_argument("--save_path", default="", type=str, help="")
+
     args = parser.parse_args()
-
-
-    #args.save_path = "no-trainer-" + args.model_name + "-" + args.n_labels
     train, dev, test, passage2labelid, labelid2passage = load_datasets(n_labels=args.n_labels)
     
     counter = 0
     to_save = []
     out = []
 
-    args.save_path = "finetuned-" + args.model_name + "-" + str(args.n_labels)
+    if not args.save_path:
+        args.save_path = "finetuned-" + args.model_name + "-" + str(args.n_labels)
                 
     X_train = train.destination_context.tolist()
     y_train = [passage2labelid[str(row.passage_id)] for _, row in train.iterrows()]

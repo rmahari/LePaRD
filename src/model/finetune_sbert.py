@@ -13,7 +13,9 @@ from tqdm import tqdm
 
 
 def get_training_set(n_labels, train, passage2labelid):
-	df_targets = pd.read_json("bm25-files-" + n_labels + "/docs00.json", lines=True)
+	train, dev, test, passage2labelid, labelid2passage = load_datasets(n_labels=n_labels)
+	df_targets = pd.DataFrame([(c,i) for c,i in labelid2passage.items()], columns=["id", "contents"])
+
 	train_samples = []
 	for passage_id, destination_context in tqdm(zip(train.passage_id, train.destination_context), total=len(train)):
 		passage_id = passage_id

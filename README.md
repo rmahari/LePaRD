@@ -53,7 +53,7 @@ Requires
 
 For example, the following should work:
 ```
-conda create --name lepard python=3.11
+conda create --name lepard python=3.10
 conda activate lepard
 pip install -r requirements.txt
 ```
@@ -63,14 +63,14 @@ pip install -r requirements.txt
 First, split the data into train, dev and test. The output of this process can also be downloaded [here](https://www.dropbox.com/scl/fi/m4z379fyjgi33ppu8q0fs/data_postprocessed.zip?rlkey=nrhton2dkku9gdv8alcj0g7f1&st=mpay7kqc&dl=0).
 
 ```shell
-python src/prepare_data.py
+python src/model/prepare_data.py
 ```
 
 ### bm25 experiments
 
 ```
 # reformat input files
-python src/bm25_pipeline.py
+python src/model/bm25_pipeline.py
 
 # run anserini and bm25 retrieval
 path_anserini="/path/to/anserini"
@@ -94,7 +94,7 @@ sh $path_anserini/target/appassembler/bin/SearchMsmarco -hits 10 -threads 1 \
  -output bm25-files-$num_labels/bm25_output_test.tsv/
 
 # evaluate
-python src/evaluate_run.py --dev_predictions bm25-files-$num_labels/bm25_output_dev.tsv --test_predictions bm25-files-$num_labels/bm25_output_test.tsv --experiment bm25
+python src/model/evaluate_run.py --dev_predictions bm25-files-$num_labels/bm25_output_dev.tsv --test_predictions bm25-files-$num_labels/bm25_output_test.tsv --experiment bm25
 ```
 
 ### classification experiments
@@ -102,9 +102,9 @@ python src/evaluate_run.py --dev_predictions bm25-files-$num_labels/bm25_output_
 ```
 num_labels="10000" # change this to 20000 / 50000 for other experiments
 model_name="distilbert-base-uncased"
-python src/train_classification_models.py --n_labels 10000 --model_name $model_name # trains default distilbert models and saves model and predictions in folder "finetuned-$model_name-$num_labels"
+python src/model/train_classification_models.py --n_labels 10000 --model_name $model_name # trains default distilbert models and saves model and predictions in folder "finetuned-$model_name-$num_labels"
 # evaluate
-python src/evaluate_run.py --dev_predictions finetuned-distilbert-base-uncased-10000/predictions_devset_10000.json --test_predictions finetuned-distilbert-base-uncased-10000/predictions_testset_10000.json 
+python src/model/evaluate_run.py --dev_predictions finetuned-distilbert-base-uncased-10000/predictions_devset_10000.json --test_predictions finetuned-distilbert-base-uncased-10000/predictions_testset_10000.json 
 # for all experiments, change num_labels to 20000 and 20000, and also run with legalbert 
 ```
 
@@ -113,20 +113,20 @@ python src/evaluate_run.py --dev_predictions finetuned-distilbert-base-uncased-1
 # zero-shot
 num_labels="10000" # change this to 20000 / 50000 for other experiments
 model_name="sentence-transformers/all-mpnet-base-v2"
-python src/run_inference_sbert.py --model_name $model_name n_labels $num_labels # creates folder "predictions-sbert" and saves output there (os.path.basename(model_name) + predictions dev/test)
+python src/model/run_inference_sbert.py --model_name $model_name n_labels $num_labels # creates folder "predictions-sbert" and saves output there (os.path.basename(model_name) + predictions dev/test)
 # evaluate
-python src/evaluate_run.py --dev_predictions predictions-sbert/predictions_devset_all-mpnet-base-v2_$num_labels.json --test_predictions predictions-sbert/predictions_testset_all-mpnet-base-v2_$num_labels.json
+python src/model/evaluate_run.py --dev_predictions predictions-sbert/predictions_devset_all-mpnet-base-v2_$num_labels.json --test_predictions predictions-sbert/predictions_testset_all-mpnet-base-v2_$num_labels.json
 ```
 
 ```
 # fine-tune
 num_labels="10000" # change this to 20000 / 50000 for other experiments
-python src/finetune_sbert.py --n_labels $num_labels # saves model in "sbert-finetuned-MultipleNegativesRankingLoss" + os.path.basename(args.model_name) + "-" + args.n_labels
+python src/model/finetune_sbert.py --n_labels $num_labels # saves model in "sbert-finetuned-MultipleNegativesRankingLoss" + os.path.basename(args.model_name) + "-" + args.n_labels
 $model_name="finetuned-distilbert-base-uncased-10000"
 # run inference
-python src/run_inference_sbert.py --model_name $model_name n_labels $num_labels # creates folder "predictions-sbert" and saves output there (os.path.basename(model_name) + predictions dev/test)
+python src/model/run_inference_sbert.py --model_name $model_name n_labels $num_labels # creates folder "predictions-sbert" and saves output there (os.path.basename(model_name) + predictions dev/test)
 # evaluate
-python src/evaluate_run.py --dev_predictions finetuned-distilbert-base-uncased-10000/predictions_devset_10000.json --test_predictions finetuned-distilbert-base-uncased-10000/predictions_testset_10000.json 
+python src/model/evaluate_run.py --dev_predictions finetuned-distilbert-base-uncased-10000/predictions_devset_10000.json --test_predictions finetuned-distilbert-base-uncased-10000/predictions_testset_10000.json 
 ```
 
 ### Data replication
