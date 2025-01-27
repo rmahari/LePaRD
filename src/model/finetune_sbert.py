@@ -4,7 +4,6 @@ import numpy as np
 import json
 from prepare_data import *
 import argparse
-import faiss
 import os
 from sentence_transformers.readers import InputExample
 from torch.utils.data import DataLoader

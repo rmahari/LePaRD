@@ -1,34 +1,17 @@
 import pandas as pd
 import numpy as np
 from collections import defaultdict, Counter
-from sklearn.svm import SVC
-from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
-from sklearn.pipeline import Pipeline
-from sklearn import metrics
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import StratifiedKFold
 import numpy as np
 from sklearn.metrics import classification_report, accuracy_score
 from transformer_models import SequenceClassificationDataset, SequenceClassificationDatasetNoLabels, evaluate_epoch, train_model
 import argparse
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, AutoConfig
 from prepare_data import *
-import os
+import os, json
 import torch
 from tqdm import tqdm
 from torch.utils.data import Dataset, DataLoader
-import json
 
-
-def get_splits(X, y):
-    skf = StratifiedKFold(n_splits=5, random_state=42, shuffle=True)
-    X = np.array(X)
-    y = np.array(y)
-    skf.get_n_splits(X, y)
-    for i, (train_index, test_index) in enumerate(skf.split(X, y)):
-        X_train, y_train = X[train_index], y[train_index]
-        X_test, y_test = X[test_index], y[test_index]
-        yield X_train, y_train, X_test, y_test
 
 
 if __name__ == "__main__":

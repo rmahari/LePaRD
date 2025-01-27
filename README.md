@@ -51,6 +51,13 @@ Requires
 * For dense retrieval: [SBERT](https://github.com/UKPLab/sentence-transformers/) and [Faiss](https://github.com/facebookresearch/faiss)
 * For classification experiments: [transformers](https://huggingface.co/docs/transformers/installation)
 
+For example, the following should work:
+```
+conda create --name lepard python=3.11
+conda activate lepard
+pip install -r requirements.txt
+```
+
 ## Experiments
 
 First, split the data into train, dev and test. The output of this process can also be downloaded [here](https://www.dropbox.com/scl/fi/m4z379fyjgi33ppu8q0fs/data_postprocessed.zip?rlkey=nrhton2dkku9gdv8alcj0g7f1&st=mpay7kqc&dl=0).

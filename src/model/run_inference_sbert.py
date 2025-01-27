@@ -16,11 +16,8 @@ def embedd_sentences(sentences, sbert_model="sentence-transformers/all-mpnet-bas
 	return corpus_embeddings
 
 
-def embedd_all_relevant_files(dev, test, n_labels, model_name):	
-	# get these from bm25 files
-	df_targets = pd.read_json("bm25-files-" + n_labels + "/docs00.json", lines=True)
+def embedd_all_relevant_files(dev, test, n_labels, model_name, df_targets):	
 	embeddings_passages = embedd_sentences(df_targets.contents.tolist(), sbert_model=model_name)
-
 	embeddings_dev = embedd_sentences(dev.destination_context.tolist(), sbert_model=model_name)
 	embeddings_test = embedd_sentences(test.destination_context.tolist(), sbert_model=model_name)
 
@@ -53,7 +50,8 @@ if __name__ == "__main__":
 	train, dev, test, passage2labelid, labelid2passage = load_datasets(n_labels=args.n_labels)
 
 	# embedd files
-	embeddings_passages, embeddings_dev, embeddings_test = embedd_all_relevant_files(dev, test, args.n_labels, args.model_name)
+	df_targets = pd.DataFrame([(c,i) for c,i in labelid2passage.items()], columns=["id", "contents"])
+	embeddings_passages, embeddings_dev, embeddings_test = embedd_all_relevant_files(dev, test, args.n_labels, args.model_name, df_targets)
 	
 	hits = retrieve_neighbours_gpu(embeddings_passages, embeddings_dev)
 
