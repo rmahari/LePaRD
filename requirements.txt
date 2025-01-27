@@ -1,0 +1,8 @@
+sentence-transformers
+transformers
+pytrec_eval
+pandas
+scikit-learn
+datasets
+faiss-cpu
+accelerate>=0.26.0
