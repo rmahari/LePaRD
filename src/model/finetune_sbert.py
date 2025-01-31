@@ -18,8 +18,7 @@ def get_training_set(n_labels, train, passage2labelid):
 
 	train_samples = []
 	for passage_id, destination_context in tqdm(zip(train.passage_id, train.destination_context), total=len(train)):
-		passage_id = passage_id
-		origin_passage = df_targets.iloc[passage2labelid[str(passage_id)]]
+		origin_passage = passage_dict[str(passage_id)]
 		destination_context = destination_context
 		train_samples.append(InputExample(texts=[destination_context, origin_passage], label=1))
 	return train_samples

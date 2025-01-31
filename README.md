@@ -122,7 +122,7 @@ python src/model/evaluate_run.py --dev_predictions predictions-sbert/predictions
 # fine-tune
 num_labels="10000" # change this to 20000 / 50000 for other experiments
 python src/model/finetune_sbert.py --n_labels $num_labels # saves model in "sbert-finetuned-MultipleNegativesRankingLoss" + os.path.basename(args.model_name) + "-" + args.n_labels
-$model_name="finetuned-distilbert-base-uncased-10000"
+model_name="sbert-finetuned-MultipleNegativesRankingLossall-distilroberta-v1-10000"
 # run inference
 python src/model/run_inference_sbert.py --model_name $model_name n_labels $num_labels # creates folder "predictions-sbert" and saves output there (os.path.basename(model_name) + predictions dev/test)
 # evaluate

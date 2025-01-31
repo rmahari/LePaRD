@@ -48,7 +48,8 @@ def load_testsets(n_labels="10000"):
 
 if __name__ == "__main__":
 	for n_labels in ["10000", "20000", "50000"]:
-		train, dev, test, passage2labelid, labelid2passage = load_data(dataframe="data/top_" + n_labels + "_training_data.csv.gz")
+		train, dev, test, passage2labelid, labelid2passage = load_data(dataframe="data/top_" + n_labels + "_data.csv.gz")
+		
 		train.to_csv("data/trainset_top_" + n_labels + ".csv.gz", index=False, compression='gzip')
 		dev.to_csv("data/devset_top_" + n_labels + ".csv.gz", index=False, compression='gzip')
 		test.to_csv("data/testset_top_" + n_labels + ".csv.gz", index=False, compression='gzip')

@@ -16,24 +16,33 @@ def embedd_sentences(sentences, sbert_model="sentence-transformers/all-mpnet-bas
 	return corpus_embeddings
 
 
-def embedd_all_relevant_files(dev, test, n_labels, model_name, df_targets):	
-	embeddings_passages = embedd_sentences(df_targets.contents.tolist(), sbert_model=model_name)
+def embedd_all_relevant_files(dev, test, n_labels, model_name, df_targets, labelid2passage):	
+	with open("data/passage_dict.json") as f:
+		passage_dict = json.load(f)["data"]
+
+	targets = []
+	for i in range(int(n_labels)):
+		passage_id = labelid2passage[str(i)]
+		targets.append(passage_dict[passage_id])
+
+	embeddings_passages = embedd_sentences(targets, sbert_model=model_name)
 	embeddings_dev = embedd_sentences(dev.destination_context.tolist(), sbert_model=model_name)
 	embeddings_test = embedd_sentences(test.destination_context.tolist(), sbert_model=model_name)
 
 	return embeddings_passages, embeddings_dev, embeddings_test
 	
 def retrieve_neighbours_gpu(X, queries, batchsize=8192, num_neighbors=10):
-	res = faiss.StandardGpuResources()  # use a single GPU
+	#res = faiss.StandardGpuResources()  # use a single GPU
 	n, dim = X.shape[0], X.shape[1]
 	index = faiss.IndexFlatIP(dim) # create CPU index
-	gpu_index_flat = faiss.index_cpu_to_gpu(res, 0, index) # create GPU index
-	gpu_index_flat.add(X)         # add vectors to the index
+	#gpu_index_flat = faiss.index_cpu_to_gpu(res, 0, index) # create GPU index
+	#gpu_index_flat.add(X)         # add vectors to the index
 
+    index.add(X) # add vectors to the index
 	all_indices = []
 	for i in tqdm(range(0, len(queries), batchsize)):
 		features = queries[i:i + batchsize]
-		distances, indices = gpu_index_flat.search(features, num_neighbors)
+		distances, indices = index.search(features, num_neighbors)
 		all_indices.extend(indices)
 	return all_indices
 
@@ -49,9 +58,7 @@ if __name__ == "__main__":
 	os.makedirs(outpath, exist_ok=True)
 	train, dev, test, passage2labelid, labelid2passage = load_datasets(n_labels=args.n_labels)
 
-	# embedd files
-	df_targets = pd.DataFrame([(c,i) for c,i in labelid2passage.items()], columns=["id", "contents"])
-	embeddings_passages, embeddings_dev, embeddings_test = embedd_all_relevant_files(dev, test, args.n_labels, args.model_name, df_targets)
+	embeddings_passages, embeddings_dev, embeddings_test = embedd_all_relevant_files(dev, test, args.n_labels, args.model_name, labelid2passage)
 	
 	hits = retrieve_neighbours_gpu(embeddings_passages, embeddings_dev)
 
