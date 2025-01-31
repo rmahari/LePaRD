@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
 
 	# train
-	model.fit(train_objectives=[(train_dataloader, train_loss)],
+	model.old_fit(train_objectives=[(train_dataloader, train_loss)],
 		  epochs=num_epochs,
 		  warmup_steps=0.1,
 		  output_path=model_save_path,
